@@ -8,7 +8,7 @@ import { _ } from 'lodash'
  * @author Alex Andrix <alex@alexandrix.com>
  * @since 2018-12-02
  */
-function SpipaCircle ({ className }) {
+function SpipaCircle ({ className, centerRadius = 100 }) {
   const canvasRef = useRef(null)
 
   const App = {}
@@ -42,7 +42,7 @@ function SpipaCircle ({ className }) {
       for (let yy = -500; yy < 500; yy += this.gridSize) {
         // Radial field, triangular function of r with max around r0
         const r = Math.sqrt(xx * xx + yy * yy)
-        const r0 = 200
+        const r0 = centerRadius
         var field
 
         if (r < r0) field = 255 / r0 * r
@@ -53,13 +53,13 @@ function SpipaCircle ({ className }) {
           y: yy,
           busyAge: 0,
           spotIndex: i,
-          isEdge: (xx == -500
+          isEdge: (xx === -500
             ? 'left'
-            : (xx == (-500 + this.gridSize * (this.gridSteps - 1))
+            : (xx === (-500 + this.gridSize * (this.gridSteps - 1))
                 ? 'right'
-                : (yy == -500
+                : (yy === -500
                     ? 'top'
-                    : (yy == (-500 + this.gridSize * (this.gridSteps - 1))
+                    : (yy === (-500 + this.gridSize * (this.gridSteps - 1))
                         ? 'bottom'
                         : false
                       )
@@ -83,17 +83,17 @@ function SpipaCircle ({ className }) {
       if (e.busyAge > 0) e.busyAge++
     })
 
-    if (this.stepCount % this.birthFreq == 0 && (this.particles.length + this.popPerBirth) < this.maxPop) {
+    if (this.stepCount % this.birthFreq === 0 && (this.particles.length + this.popPerBirth) < this.maxPop) {
       this.birth()
     }
     App.move()
     App.draw()
   }
   App.birth = function () {
-    var x, y
     const gridSpotIndex = Math.floor(Math.random() * this.gridMaxIndex)
     const gridSpot = this.grid[gridSpotIndex]
-    var x = gridSpot.x; var y = gridSpot.y
+    const x = gridSpot.x
+    const y = gridSpot.y
 
     const particle = {
       hue: 200, // + Math.floor(50*Math.random()),
@@ -117,7 +117,7 @@ function SpipaCircle ({ className }) {
   }
   App.kill = function (particleName) {
     const newArray = _.reject(this.particles, function (seed) {
-      return (seed.name == particleName)
+      return (seed.name === particleName)
     })
     this.particles = _.cloneDeep(newArray)
   }
@@ -154,7 +154,7 @@ function SpipaCircle ({ className }) {
           })
 
           const potentialNewGridSpot = maxFieldSpot
-          if (potentialNewGridSpot.busyAge == 0 || potentialNewGridSpot.busyAge > 15) { // Allow wall fading
+          if (potentialNewGridSpot.busyAge === 0 || potentialNewGridSpot.busyAge > 15) { // Allow wall fading
             // if (potentialNewGridSpot.busyAge == 0) {// Spots busy forever
             // Ok it's free let's go there
             p.ageSinceStuck = 0// Not stuck anymore yay
@@ -165,7 +165,7 @@ function SpipaCircle ({ className }) {
           } else p.ageSinceStuck++
         } else p.ageSinceStuck++
 
-        if (p.ageSinceStuck == 10) this.kill(p.name)
+        if (p.ageSinceStuck === 10) this.kill(p.name)
       }
 
       // Spring attractor to center with viscosity
@@ -288,7 +288,8 @@ function SpipaCircle ({ className }) {
 }
 
 SpipaCircle.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  centerRadius: PropTypes.number
 }
 
 export default SpipaCircle
