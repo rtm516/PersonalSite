@@ -35,7 +35,7 @@ function Layout () {
   const matches = useMatches()
   const { handle, data } = matches[matches.length - 1]
   const title = handle && handle.title ? 'Ryan Milner - ' + handle.title(data) : 'Ryan Milner'
-  const navOnly = handle && handle.navOnly ? handle.navOnly(data) : false
+  const hideHeader = handle && handle.hideHeader ? handle.hideHeader(data) : false
   const hideFooter = handle && handle.hideFooter ? handle.hideFooter(data) : false
 
   useEffect(() => {
@@ -46,12 +46,12 @@ function Layout () {
 
   return (
     <>
-      <div className={'bg-gray-800 text-white ' + (!navOnly && 'pb-32')}>
+      <div className={'bg-gray-800 text-white ' + (!hideHeader ? 'pb-32' : '')}>
         <Disclosure as='nav'>
           {({ open }) => (
             <>
               <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-                <div className={'flex h-16 items-center justify-between ' + (!navOnly && 'border-b border-gray-700')}>
+                <div className={'flex h-16 items-center justify-between ' + (!hideHeader ? 'border-b border-gray-700' : '')}>
                   <div className='flex items-center'>
                     <h1 className='flex-shrink-0 flex items-center'>
                       <img className='size-8' src={icon} /> rtm516
@@ -100,7 +100,7 @@ function Layout () {
           )}
         </Disclosure>
 
-        {(!navOnly &&
+        {(!hideHeader &&
           <header className='py-10 flex justify-center'>
             <h2 className='px-8 text-5xl'>
               {title}
@@ -113,7 +113,7 @@ function Layout () {
         )}
       </div>
 
-      <main className={'flex-1 ' + (!navOnly && '-mt-32')}>
+      <main className={'flex-1 ' + (!hideHeader ? '-mt-32' : '')}>
         <Outlet />
       </main>
 

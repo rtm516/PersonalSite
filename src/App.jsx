@@ -18,7 +18,7 @@ const router = createBrowserRouter([
         element: <Home />,
         handle: {
           title: () => 'Home',
-          navOnly: () => true,
+          hideHeader: () => true,
           hideFooter: () => true
         }
       },
