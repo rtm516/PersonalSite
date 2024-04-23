@@ -28,10 +28,11 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
-    "vite": "^5.2.0"
+    "vite": "^5.2.0",
+    "vite-plugin-svgr": "^4.2.0"
   },
   "//": "Added as a work around for https://github.com/remix-run/react-router/issues/11480",
   "overrides": {
-    "rollup": "4.15.0" 
+    "rollup": "4.15.0"
   }
 }

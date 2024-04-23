@@ -113,7 +113,7 @@ function Layout () {
         )}
       </div>
 
-      <main className={'flex-1 ' + (!navOnly && 'mt-[-8rem]')}>
+      <main className={'flex-1 ' + (!navOnly && '-mt-32')}>
         <Outlet />
       </main>
 
