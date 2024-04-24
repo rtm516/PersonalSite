@@ -105,10 +105,6 @@ function Layout () {
             <h2 className='px-8 text-5xl'>
               {title}
             </h2>
-            {/* TODO Find better colors, from-blue-700? */}
-            {/* <h2 className='px-8 text-5xl font-bold leading-normal bg-clip-text text-transparent bg-gradient-to-br from-[#1e30f3] to-[#e21e80]'>
-              {title}
-            </h2> */}
           </header>
         )}
       </div>
