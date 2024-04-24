@@ -34,13 +34,15 @@ function getNav (isMobile = false) {
 function Layout () {
   const matches = useMatches()
   const { handle, data } = matches[matches.length - 1]
-  const title = handle && handle.title ? 'Ryan Milner - ' + handle.title(data) : 'Ryan Milner'
+  const title = handle && handle.title ? handle.title(data) : ''
   const hideHeader = handle && handle.hideHeader ? handle.hideHeader(data) : false
   const hideFooter = handle && handle.hideFooter ? handle.hideFooter(data) : false
 
   useEffect(() => {
     if (title) {
-      document.title = title
+      document.title = title + ' - Ryan Milner'
+    } else {
+      document.title = 'Ryan Milner'
     }
   }, [title])
 
