@@ -33,6 +33,8 @@ function SpipaCircle ({ className, centerRadius = 100 }) {
     this.maxPop = 300
     this.birthFreq = 2
 
+    this.running = true
+
     // Build grid
     this.gridSize = 8// Motion coords
     this.gridSteps = Math.floor(1000 / this.gridSize)
@@ -43,7 +45,7 @@ function SpipaCircle ({ className, centerRadius = 100 }) {
         // Radial field, triangular function of r with max around r0
         const r = Math.sqrt(xx * xx + yy * yy)
         const r0 = centerRadius
-        var field
+        let field
 
         if (r < r0) field = 255 / r0 * r
         else if (r > r0) field = 255 - Math.min(255, (r - r0) / 2)
@@ -66,7 +68,7 @@ function SpipaCircle ({ className, centerRadius = 100 }) {
                   )
               )
           ),
-          field: field
+          field
         })
         i++
       }
@@ -99,8 +101,8 @@ function SpipaCircle ({ className, centerRadius = 100 }) {
       hue: 200, // + Math.floor(50*Math.random()),
       sat: 95, // 30 + Math.floor(70*Math.random()),
       lum: 20 + Math.floor(40 * Math.random()),
-      x: x,
-      y: y,
+      x,
+      y,
       xLast: x,
       yLast: y,
       xSpeed: 0,
@@ -109,7 +111,7 @@ function SpipaCircle ({ className, centerRadius = 100 }) {
       ageSinceStuck: 0,
       attractor: {
         oldIndex: gridSpotIndex,
-        gridSpotIndex: gridSpotIndex // Pop at random position on grid
+        gridSpotIndex // Pop at random position on grid
       },
       name: 'seed-' + Math.ceil(10000000 * Math.random())
     }
@@ -148,7 +150,7 @@ function SpipaCircle ({ className, centerRadius = 100 }) {
           const rightSpot = this.grid[rightIndex]
 
           // Choose neighbour with highest field value (with some desobedience...)
-          var chaos = 30
+          const chaos = 30
           const maxFieldSpot = _.maxBy([topSpot, bottomSpot, leftSpot, rightSpot], function (e) {
             return e.field + chaos * Math.random()
           })
@@ -217,15 +219,13 @@ function SpipaCircle ({ className, centerRadius = 100 }) {
     this.ctx.closePath()
 
     for (let i = 0; i < this.particles.length; i++) {
-    // Draw particle
+      // Draw particle
       const p = this.particles[i]
 
-      var h, s, l, a
-
-      h = p.hue + this.stepCount / 30
-      s = p.sat
-      l = p.lum
-      a = 1
+      const h = p.hue + this.stepCount / 30
+      const s = p.sat
+      const l = p.lum
+      const a = 1
 
       const last = this.dataXYtoCanvasXY(p.xLast, p.yLast)
       const now = this.dataXYtoCanvasXY(p.x, p.y)
@@ -270,17 +270,28 @@ function SpipaCircle ({ className, centerRadius = 100 }) {
 
     return { x: xx, y: yy }
   }
+  App.stop = function () {
+    this.running = false
+  }
 
   useEffect(() => {
     App.setup()
     App.draw()
 
     const frame = function () {
+      if (!App.running) {
+        console.log('Stopping')
+        return
+      }
       App.evolve()
       window.requestAnimationFrame(frame)
     }
     frame()
-  })
+
+    return () => {
+      App.running = false
+    }
+  }, [App])
 
   return (
     <canvas className={className} ref={canvasRef} />
