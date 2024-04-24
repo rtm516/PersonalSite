@@ -1,3 +1,7 @@
+import SocialButton from '../components/SocialButton'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub, faLinkedin, faMastodon, faTwitter } from '@fortawesome/free-brands-svg-icons'
+
 function About () {
   return (
     <>
@@ -22,6 +26,12 @@ function About () {
           <p>
             Phasellus eu diam nunc. Duis velit nisi, posuere et libero viverra, vehicula luctus orci. Nam sit amet lectus iaculis sapien tincidunt suscipit non eget arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur lorem tortor, feugiat sed placerat at, blandit in ligula. Morbi eu est vitae mi aliquam imperdiet. Phasellus congue erat ligula, sit amet consectetur justo maximus nec. Vivamus bibendum luctus purus vitae laoreet. Nulla nec hendrerit tortor, id vehicula ipsum. Duis tempus enim nunc, vitae ullamcorper elit dapibus at.
           </p>
+          <div className='flex gap-5 justify-center'>
+            <SocialButton link='https://www.linkedin.com/in/ryan-m-31246b12b/'><FontAwesomeIcon icon={faLinkedin} /></SocialButton>
+            <SocialButton link='https://twitter.com/rtm516'><FontAwesomeIcon icon={faTwitter} /></SocialButton>
+            <SocialButton link='https://infosec.exchange/@rtm516'><FontAwesomeIcon icon={faMastodon} /></SocialButton>
+            <SocialButton link='https://github.com/rtm516/'><FontAwesomeIcon icon={faGithub} /></SocialButton>
+          </div>
         </div>
       </div>
     </>
