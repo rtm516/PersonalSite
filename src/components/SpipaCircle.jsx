@@ -3,14 +3,50 @@ import PropTypes from 'prop-types'
 import { _ } from 'lodash'
 
 /**
- * Ajusted from https://codepen.io/alexandrix/pen/oQOvYp to work with React
- *
- * @author Alex Andrix <alex@alexandrix.com>
- * @since 2018-12-02
+ * Wrapped https://codepen.io/alexandrix/pen/oQOvYp to be a React component
  */
 function SpipaCircle ({ className, centerRadius = 100 }) {
   const canvasRef = useRef(null)
 
+  // Create the app and setup
+  useEffect(() => {
+    const App = constructApp(canvasRef, centerRadius)
+    App.setup()
+    App.draw()
+
+    const frame = function () {
+      // If not running, stop
+      if (!App.running) {
+        return
+      }
+
+      App.evolve()
+      window.requestAnimationFrame(frame)
+    }
+    frame()
+
+    // On unmount stop the app
+    return () => {
+      App.running = false
+    }
+  }, [centerRadius])
+
+  return (
+    <canvas className={className} ref={canvasRef} />
+  )
+}
+
+SpipaCircle.propTypes = {
+  className: PropTypes.string,
+  centerRadius: PropTypes.number
+}
+
+/**
+ * https://codepen.io/alexandrix/pen/oQOvYp
+ * @author Alex Andrix <alex@alexandrix.com>
+ * @since 2018-12-02
+ */
+function constructApp (canvasRef, centerRadius) {
   const App = {}
   App.setup = function () {
     this.canvas = canvasRef.current
@@ -274,33 +310,7 @@ function SpipaCircle ({ className, centerRadius = 100 }) {
     this.running = false
   }
 
-  useEffect(() => {
-    App.setup()
-    App.draw()
-
-    const frame = function () {
-      if (!App.running) {
-        console.log('Stopping')
-        return
-      }
-      App.evolve()
-      window.requestAnimationFrame(frame)
-    }
-    frame()
-
-    return () => {
-      App.running = false
-    }
-  }, [App])
-
-  return (
-    <canvas className={className} ref={canvasRef} />
-  )
-}
-
-SpipaCircle.propTypes = {
-  className: PropTypes.string,
-  centerRadius: PropTypes.number
+  return App
 }
 
 export default SpipaCircle
