@@ -6,7 +6,7 @@ import { _ } from 'lodash'
  * Wrapped https://codepen.io/alexandrix/pen/oQOvYp to be a React component
  */
 function SpipaCircle ({ className, centerRadius = 100 }) {
-  const canvasRef = useRef(null)
+  const canvasRef = useRef()
 
   // Create the app and setup
   useEffect(() => {
