@@ -27,6 +27,7 @@ function getNav (isMobile = false) {
       <NavLink to='/' className={(a) => getNavClass(isMobile, a)}>Home</NavLink>
       <NavLink to='/projects' className={(a) => getNavClass(isMobile, a)}>Projects</NavLink>
       <NavLink to='/about' className={(a) => getNavClass(isMobile, a)}>About</NavLink>
+      <NavLink to='/contact' className={(a) => getNavClass(isMobile, a)}>Contact</NavLink>
     </>
   )
 }
