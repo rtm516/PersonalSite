@@ -15,7 +15,7 @@ function Project ({ project }) {
               </p>
             </div>
             {project.github && (
-              <Tooltip className='absolute top-2 right-2 size-8' message='View source on GitHub'><a href={project.github}><GitHubLogo className='drop-shadow' /></a></Tooltip>
+              <Tooltip className='absolute top-2 right-2 size-8' message='View source on GitHub'><a href={project.github}><GitHubLogo /></a></Tooltip>
             )}
           </div>
           {project.img && (
