@@ -8,19 +8,32 @@
     "description": "Geyser is a proxy, bridging the gap between Minecraft: Bedrock Edition and Minecraft: Java Edition servers. The ultimate goal of this project is to allow Minecraft: Bedrock Edition users to join Minecraft: Java Edition servers as seamlessly as possible. I've worked on various features of this software along with other tools used as part of the project, most notably GeyserConnect which combines the power of Geyser with the ease of use of BedrockConnect."
   },
   {
+    "title": "Bean Bashers",
+    "date": "2026-02-02",
+    "github": "https://github.com/nu-game-dev-society/GGJ2026",
+    "img": "beanbashers.png",
+    "description": "Wobbly beans don masks and bash each other senseless in this chaotic physics-based party brawler. This game was built for GGJ 2026 with the theme Mask."
+  },
+  {
+    "title": "Racing Under the Three Seas",
+    "date": "2025-01-26",
+    "github": "https://github.com/nu-game-dev-society/GGJ2025",
+    "img": "racing.png",
+    "description": "Underwater fish racing game, race against the AI and boost yourself to the finish line. This game was built for GGJ 2025 with the theme Bubble."
+  },
+  {
     "title": "This website",
     "date": "2024-04-22",
-    "active": true,
     "github": "https://github.com/rtm516/PersonalSite",
     "img": "website-react.png",
     "description": "This website is a rebuild and rework of the old laravel based site into a simple lightweight static site. It is designed to be easy to maintain and update, while also being fast and responsive. It is built using React, Tailwind CSS and hosted on GitHub Pages."
   },
   {
     "title": "Clown Carnival Carnage",
-    "date": "2024-01-31",
+    "date": "2024-01-28",
     "github": "https://github.com/nu-game-dev-society/GGJ2024",
     "img": "clown.png",
-    "description": "Can you escape the dingy carnival before the clown gets you. Complete minigames to collect tickets to pay off your debt. This game was built for GGJ 2024 with the theme Roots."
+    "description": "Can you escape the dingy carnival before the clown gets you. Complete minigames to collect tickets to pay off your debt. This game was built for GGJ 2024 with the theme Make Me Laugh."
   },
   {
     "title": "MCXboxBroadcast",
