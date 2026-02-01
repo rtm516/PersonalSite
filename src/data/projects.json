@@ -5,7 +5,7 @@
     "active": true,
     "github": "https://github.com/GeyserMC/Geyser",
     "img": "geyser.png",
-    "description": "Geyser is a proxy, bridging the gap between Minecraft: Bedrock Edition and Minecraft: Java Edition servers. The ultimate goal of this project is to allow Minecraft: Bedrock Edition users to join Minecraft: Java Edition servers as seamlessly as possible. I've worked on various features of this software along with other tools used as part of the project, most notably GeyserConnect which combines the power of Geyser with the ease of use of BedrockConnect."
+    "description": "Geyser is a proxy, bridging the gap between Minecraft: Bedrock Edition and Minecraft: Java Edition servers. The ultimate goal of this project is to allow Minecraft: Bedrock Edition users to join Minecraft: Java Edition servers as seamlessly as possible. I've worked on various features of this software along with other tools used as part of the project. I also manage a large portion of the infrastructure that backs the project."
   },
   {
     "title": "Bean Bashers",
